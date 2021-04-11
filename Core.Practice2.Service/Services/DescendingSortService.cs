@@ -2,6 +2,7 @@
 using Core.Practice2.Domain.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,9 +10,11 @@ namespace Core.Practice2.Service.Services
 {
     public class DescendingSortService : IProductSortingService
     {
-        public Task<IList<Product>> Sort(IList<Product> products)
+        public async Task<IList<Product>> Sort(IList<Product> products)
         {
-            throw new NotImplementedException();
+            if (products == null) return null;
+
+            return products.OrderByDescending(o => o.Name).ToList();
         }
     }
 }

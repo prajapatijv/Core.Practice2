@@ -1,4 +1,6 @@
+using Core.Practice2.Domain.Interfaces;
 using Core.Practice2.Service.Commands;
+using Core.Practice2.Service.Proxies;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -50,8 +52,7 @@ namespace Core.Practice2
 
         private void RegisterDIConfig(IServiceCollection services)
         {
-            //services.AddSingleton<IEmailValidate, EmailValidator>();
-            //services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IProductSeviceProxy, ProductSeviceProxy>();
         }
 
     }
