@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Core.Practice2.Domain.Interfaces
 {
-    public interface IProductSeviceProxy
+    public interface IProductClient
     {
         Task<IList<Product>> GetProducts();
     }

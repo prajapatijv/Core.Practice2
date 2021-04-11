@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Polly;
+using System;
+using System.Net.Http;
 using System.Reflection;
 using System.Text.Json.Serialization;
 
@@ -32,6 +35,15 @@ namespace Core.Practice2
             //services.AddDbContext<AppDbContext>(o => o.UseInMemoryDatabase("AppDB"));
             services.AddMediatR(typeof(UserTokenCommand).GetTypeInfo().Assembly);
             RegisterDIConfig(services);
+
+            services.AddHttpClient<IProductClient, ProductClient>()
+               .AddTransientHttpErrorPolicy(
+                   p => p.WaitAndRetryAsync(new[]
+                   {
+                        TimeSpan.FromSeconds(1),
+                        TimeSpan.FromSeconds(5),
+                        TimeSpan.FromSeconds(10)
+                   }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,9 +62,9 @@ namespace Core.Practice2
 
         }
 
-        private void RegisterDIConfig(IServiceCollection services)
+        private static void RegisterDIConfig(IServiceCollection services)
         {
-            services.AddTransient<IProductSeviceProxy, ProductSeviceProxy>();
+            services.AddTransient<IProductClient, ProductClient>();
         }
 
     }

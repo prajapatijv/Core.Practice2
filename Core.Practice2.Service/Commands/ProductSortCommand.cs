@@ -16,9 +16,9 @@ namespace Core.Practice2.Service.Commands
 
     public class ProductSortCommandHandler : IRequestHandler<ProductSortCommand, IList<Product>>
     {
-        private readonly IProductSeviceProxy productSeviceProxy;
+        private readonly IProductClient productSeviceProxy;
 
-        public ProductSortCommandHandler(IProductSeviceProxy productSeviceProxy)
+        public ProductSortCommandHandler(IProductClient productSeviceProxy)
         {
             this.productSeviceProxy = productSeviceProxy;
         }
