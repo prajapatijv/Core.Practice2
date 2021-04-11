@@ -15,7 +15,7 @@ namespace Core.Practice2.Service.Proxies
         private readonly HttpClient client;
         private readonly ILogger<ProductClient> logger;
 
-        private const string ApiKey = "";
+        private const string ApiKey = "8fed6586-9605-4b6c-845b-e02e8417f230";
         private const string BaseUrl = "http://dev-wooliesx-recruitment.azurewebsites.net/api/resource/products?token={0}";
         
         public ProductClient(ILogger<ProductClient> logger, HttpClient client)
