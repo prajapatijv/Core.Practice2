@@ -5,42 +5,42 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
-
 
 namespace Core.Practice2.Service.Proxies
 {
-    public class ProductClient : IProductClient
+    public class ShopperHistoryClient : IShopperHistory
     {
         private readonly HttpClient client;
-        private readonly ILogger<ProductClient> logger;
+        private readonly ILogger<ShopperHistoryClient> logger;
 
         /// <summary>
         /// This should typially be in StartUp.cs
         /// </summary>
         private string ApiKey = Environment.GetEnvironmentVariable("ApiKey");
-        private const string BaseUrl = "http://dev-wooliesx-recruitment.azurewebsites.net/api/resource/products?token={0}";
-        
-        public ProductClient(ILogger<ProductClient> logger, HttpClient client)
+        private const string BaseUrl = "http://dev-wooliesx-recruitment.azurewebsites.net/api/resource/shopperHistory?token=={0}";
+
+        public ShopperHistoryClient(ILogger<ShopperHistoryClient> logger, HttpClient client)
         {
             this.client = client;
             this.logger = logger;
         }
 
-        public async Task <IList<Product>> GetProducts()
+        public async Task<IList<ShopperHistory>> GetBehavior()
         {
             try
             {
                 using (var response = await client.GetAsync(string.Format(BaseUrl, ApiKey)))
                 {
                     response.EnsureSuccessStatusCode();
-                    var products = JsonConvert.DeserializeObject<IList<Product>>(await response.Content.ReadAsStringAsync());
-                    return products;
+                    var history = JsonConvert.DeserializeObject<IList<ShopperHistory>>(await response.Content.ReadAsStringAsync());
+                    return history;
                 }
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, $"Something went wrong when calling products api");
+                logger.LogError(ex, $"Something went wrong when calling shopper history api");
                 throw;
             }
         }

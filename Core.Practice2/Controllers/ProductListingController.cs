@@ -5,6 +5,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using static Core.Practice2.Startup;
 
 namespace Core.Practice2.Controllers
 {
@@ -13,16 +14,25 @@ namespace Core.Practice2.Controllers
     {
 
         private readonly IMediator mediator;
+        private readonly ServiceResolver serviceResolver;
 
-        public ProductListingController(IMediator mediator)
+        public ProductListingController(IMediator mediator, ServiceResolver serviceResolver)
         {
             this.mediator = mediator;
+            this.serviceResolver = serviceResolver;
         }
 
         [HttpGet("sort/{sortOption}")]
         public async Task<IActionResult> Sort(SortOption sortOption)
         {
-            var sortedProducts = await this.mediator.Send(new ProductSortCommand { SortOption = sortOption });
+            var service = this.serviceResolver(sortOption);
+
+            var sortedProducts = await this.mediator.Send(new ProductSortCommand
+            {
+                SortOption = sortOption,
+                ProductSortingService = service
+            });
+            
             return Ok(sortedProducts);
         }
     }

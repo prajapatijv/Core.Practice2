@@ -20,7 +20,7 @@ namespace Core.Practice2.Service.Factory
                 case SortOption.Decending:
                     return new DescendingSortService();
                 case SortOption.Recommended:
-                    return new RecomendedSortService();
+                    //return new RecomendedSortService();
                 default:
                     throw new InvalidOperationException("Not supported sort option");
             }

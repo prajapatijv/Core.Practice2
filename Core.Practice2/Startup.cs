@@ -1,6 +1,8 @@
+using Core.Practice2.Domain.Enums;
 using Core.Practice2.Domain.Interfaces;
 using Core.Practice2.Service.Commands;
 using Core.Practice2.Service.Proxies;
+using Core.Practice2.Service.Services;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Polly;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Reflection;
 using System.Text.Json.Serialization;
@@ -18,6 +21,8 @@ namespace Core.Practice2
 {
     public class Startup
     {
+        public delegate IProductSortingService ServiceResolver(SortOption sortOption);
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
@@ -65,6 +70,32 @@ namespace Core.Practice2
         private static void RegisterDIConfig(IServiceCollection services)
         {
             services.AddTransient<IProductClient, ProductClient>();
+            services.AddTransient<IShopperHistory, ShopperHistoryClient>();
+
+            services.AddTransient<AscendingPriceSortService>();
+            services.AddTransient<DescendingPriceSortService>();
+            services.AddTransient<AscendingSortService>();
+            services.AddTransient<DescendingSortService>();
+            services.AddTransient<RecomendedSortService>();
+
+            services.AddTransient<ServiceResolver>(serviceProvider => sortOption =>
+            {
+                switch (sortOption)
+                {
+                    case SortOption.Low:
+                        return serviceProvider.GetService<AscendingPriceSortService>();
+                    case SortOption.High:
+                        return serviceProvider.GetService<DescendingPriceSortService>();
+                    case SortOption.Ascending:
+                        return serviceProvider.GetService<AscendingSortService>();
+                    case SortOption.Decending:
+                        return serviceProvider.GetService<DescendingSortService>();
+                    case SortOption.Recommended:
+                        return serviceProvider.GetService<RecomendedSortService>();
+                    default:
+                        throw new InvalidOperationException("Not valid sort option");
+                }
+            });
         }
 
     }
