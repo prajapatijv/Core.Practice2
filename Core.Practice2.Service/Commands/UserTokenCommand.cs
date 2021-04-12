@@ -14,7 +14,7 @@ namespace Core.Practice2.Service.Commands
         public async Task<UserToken> Handle(UserTokenCommand request, CancellationToken cancellationToken)
         {
             // Ideally this should be some token provider service or databse check.
-            return new UserToken { Name = "test", Token = "1234-455662-22233333-3333" };
+            return new UserToken { Name = "Jitendra Prajapati", Token = "1234-455662-22233333-3333" };
         }
     }
 }

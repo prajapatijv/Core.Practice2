@@ -22,7 +22,7 @@ namespace Core.Practice2.Controllers
             this.serviceResolver = serviceResolver;
         }
 
-        [HttpGet("sort/{sortOption}")]
+        [HttpGet("sort")]
         public async Task<IActionResult> Sort(SortOption sortOption)
         {
             var service = this.serviceResolver(sortOption);
