@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Core.Practice2.Service.Proxies
 {
-    public class ShopperHistoryClient : IShopperHistory
+    public class ShopperHistoryClient : IShopperHistoryClient
     {
         private readonly HttpClient client;
         private readonly ILogger<ShopperHistoryClient> logger;
@@ -19,7 +19,7 @@ namespace Core.Practice2.Service.Proxies
         /// This should typially be in StartUp.cs
         /// </summary>
         private string ApiKey = Environment.GetEnvironmentVariable("ApiKey");
-        private const string BaseUrl = "http://dev-wooliesx-recruitment.azurewebsites.net/api/resource/shopperHistory?token=={0}";
+        private const string BaseUrl = "http://dev-wooliesx-recruitment.azurewebsites.net/api/resource/shopperHistory?token={0}";
 
         public ShopperHistoryClient(ILogger<ShopperHistoryClient> logger, HttpClient client)
         {
@@ -27,7 +27,7 @@ namespace Core.Practice2.Service.Proxies
             this.logger = logger;
         }
 
-        public async Task<IList<ShopperHistory>> GetBehavior()
+        public async Task<IList<ShopperHistory>> GetShopperHistor()
         {
             try
             {

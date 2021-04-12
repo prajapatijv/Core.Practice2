@@ -1,7 +1,6 @@
 ﻿using Core.Practice2.Domain.Enums;
 using Core.Practice2.Domain.Interfaces;
 using Core.Practice2.Domain.Models;
-using Core.Practice2.Service.Factory;
 using MediatR;
 using System.Collections.Generic;
 using System.Threading;
@@ -27,7 +26,7 @@ namespace Core.Practice2.Service.Commands
         public async Task<IList<Product>> Handle(ProductSortCommand request, CancellationToken cancellationToken)
         {
             var products = await this.productSeviceProxy.GetProducts();
-            return await ProductSortProviderFactory.GetInstance(request.SortOption).Sort(products);
+            return await request.ProductSortingService.Sort(products);
         }
     }
 }

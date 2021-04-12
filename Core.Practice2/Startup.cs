@@ -70,7 +70,7 @@ namespace Core.Practice2
         private static void RegisterDIConfig(IServiceCollection services)
         {
             services.AddTransient<IProductClient, ProductClient>();
-            services.AddTransient<IShopperHistory, ShopperHistoryClient>();
+            services.AddTransient<IShopperHistoryClient, ShopperHistoryClient>();
 
             services.AddTransient<AscendingPriceSortService>();
             services.AddTransient<DescendingPriceSortService>();

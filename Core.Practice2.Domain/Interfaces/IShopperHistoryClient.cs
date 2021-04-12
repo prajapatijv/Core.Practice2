@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 
 namespace Core.Practice2.Domain.Interfaces
 {
-    public interface IShopperHistory
+    public interface IShopperHistoryClient
     {
-        Task<IList<ShopperHistory>> GetBehavior();
+        Task<IList<ShopperHistory>> GetShopperHistor();
     }
 }
