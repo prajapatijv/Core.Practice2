@@ -14,7 +14,7 @@ namespace Core.Practice2.Domain.Enums
         Ascending,
 
         [Description("Z - A sort on the Name")]
-        Decending,
+        Descending,
 
         [Description("Recommended")]
         Recommended

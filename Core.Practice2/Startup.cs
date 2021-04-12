@@ -88,7 +88,7 @@ namespace Core.Practice2
                         return serviceProvider.GetService<DescendingPriceSortService>();
                     case SortOption.Ascending:
                         return serviceProvider.GetService<AscendingSortService>();
-                    case SortOption.Decending:
+                    case SortOption.Descending:
                         return serviceProvider.GetService<DescendingSortService>();
                     case SortOption.Recommended:
                         return serviceProvider.GetService<RecommendedSortService>();
