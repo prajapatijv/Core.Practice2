@@ -76,7 +76,7 @@ namespace Core.Practice2
             services.AddTransient<DescendingPriceSortService>();
             services.AddTransient<AscendingSortService>();
             services.AddTransient<DescendingSortService>();
-            services.AddTransient<RecomendedSortService>();
+            services.AddTransient<RecommendedSortService>();
 
             services.AddTransient<ServiceResolver>(serviceProvider => sortOption =>
             {
@@ -91,7 +91,7 @@ namespace Core.Practice2
                     case SortOption.Decending:
                         return serviceProvider.GetService<DescendingSortService>();
                     case SortOption.Recommended:
-                        return serviceProvider.GetService<RecomendedSortService>();
+                        return serviceProvider.GetService<RecommendedSortService>();
                     default:
                         throw new InvalidOperationException("Not valid sort option");
                 }

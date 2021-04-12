@@ -10,7 +10,6 @@ namespace Core.Practice2.Service.Commands
 {
     public class ProductSortCommand : IRequest<IList<Product>>
     {
-        public SortOption SortOption { get; set; }
         public IProductSortingService ProductSortingService { get; set; }
     }
 

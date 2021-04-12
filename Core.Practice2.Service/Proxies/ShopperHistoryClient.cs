@@ -27,7 +27,7 @@ namespace Core.Practice2.Service.Proxies
             this.logger = logger;
         }
 
-        public async Task<IList<ShopperHistory>> GetShopperHistor()
+        public async Task<IList<ShopperHistory>> GetShopperHistory()
         {
             try
             {

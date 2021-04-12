@@ -29,7 +29,6 @@ namespace Core.Practice2.Controllers
 
             var sortedProducts = await this.mediator.Send(new ProductSortCommand
             {
-                SortOption = sortOption,
                 ProductSortingService = service
             });
             

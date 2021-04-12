@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Core.Practice2.Service.Services
 {
-    public class RecomendedSortService : IProductSortingService
+    public class RecommendedSortService : IProductSortingService
     {
         private readonly IShopperHistoryClient shopperHistory;
 
-        public RecomendedSortService(IShopperHistoryClient shopperHistory)
+        public RecommendedSortService(IShopperHistoryClient shopperHistory)
         {
             this.shopperHistory = shopperHistory;
         }
@@ -22,7 +22,7 @@ namespace Core.Practice2.Service.Services
         /// <returns></returns>
         public async Task<IList<Product>> Sort(IList<Product> products)
         {
-            var shopperHistory = await this.shopperHistory.GetShopperHistor();
+            var shopperHistory = await this.shopperHistory.GetShopperHistory();
 
             var flatProducts = new List<Product>();
             shopperHistory.ToList().ForEach(a => flatProducts.AddRange(a.Products));

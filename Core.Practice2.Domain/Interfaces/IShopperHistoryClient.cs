@@ -6,6 +6,6 @@ namespace Core.Practice2.Domain.Interfaces
 {
     public interface IShopperHistoryClient
     {
-        Task<IList<ShopperHistory>> GetShopperHistor();
+        Task<IList<ShopperHistory>> GetShopperHistory();
     }
 }

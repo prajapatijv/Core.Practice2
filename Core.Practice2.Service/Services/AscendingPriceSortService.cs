@@ -1,4 +1,5 @@
-﻿using Core.Practice2.Domain.Interfaces;
+﻿
+using Core.Practice2.Domain.Interfaces;
 using Core.Practice2.Domain.Models;
 using System.Collections.Generic;
 using System.Linq;
